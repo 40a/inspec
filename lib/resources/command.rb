@@ -28,6 +28,9 @@ module Inspec::Resources
     end
 
     def result
+      if @command.nil?
+        raise 'InSpec `command` was called with `nil` as the argument. This is not supported. Please provide a valid command instead.'
+      end
       @result ||= inspec.backend.run_command(@command)
     end
 
